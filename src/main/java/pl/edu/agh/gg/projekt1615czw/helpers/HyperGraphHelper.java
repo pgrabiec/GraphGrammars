@@ -10,6 +10,7 @@ import pl.edu.agh.gg.projekt1615czw.domain.HyperNodeType;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class HyperGraphHelper {
     // returns list of all hyperedges connected to the hypervertex
@@ -41,7 +42,7 @@ public class HyperGraphHelper {
                 .orElseThrow(ProductionNotApplicableException::new);
     }
 
-    private static HyperNode findHyperVertexOnEdge(Graph<HyperNode, DefaultEdge> graph, DefaultEdge edge) {
+    public static HyperNode findHyperVertexOnEdge(Graph<HyperNode, DefaultEdge> graph, DefaultEdge edge) {
         HyperNode source = graph.getEdgeSource(edge);
         if (source.getType() == HyperNodeType.VERTEX) {
             return source;
@@ -50,7 +51,7 @@ public class HyperGraphHelper {
         }
     }
 
-    private static HyperNode findHyperEdgeOnEdge(Graph<HyperNode, DefaultEdge> graph, DefaultEdge edge) {
+    public static HyperNode findHyperEdgeOnEdge(Graph<HyperNode, DefaultEdge> graph, DefaultEdge edge) {
         HyperNode source = graph.getEdgeSource(edge);
         if (source.getType() == HyperNodeType.HYPER_EDGE) {
             return source;
@@ -88,5 +89,12 @@ public class HyperGraphHelper {
         }
 
         return returnVal;
+    }
+
+    // returns all vertices in given graph
+    public static Set<HyperNode> getAllHyperVertices(Graph<HyperNode, DefaultEdge> graph) {
+        return graph.vertexSet().stream()
+                .filter(hyperNode -> hyperNode.getType() == HyperNodeType.VERTEX)
+                .collect(Collectors.toSet());
     }
 }
