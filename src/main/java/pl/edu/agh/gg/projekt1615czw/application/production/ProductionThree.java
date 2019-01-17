@@ -115,11 +115,11 @@ public class ProductionThree implements Production
         }
 
         else if (vertical && point1.getGeom().getX() == 0) {
-            ListF = Graphs.neighborListOf(graph, point3).stream().filter(s -> s.getDirection() == Direction.E).collect(Collectors.toList());
+            ListF = Graphs.neighborListOf(graph, point3).stream().filter(s -> s.getDirection() == Direction.W).collect(Collectors.toList());
             point.setLocation( 0,(int) Math.floor((point1.getGeom().getY()+ point2.getGeom().getY())/2));
         }
         else if(vertical && point1.getGeom().getX() != 0) {
-            ListF = Graphs.neighborListOf(graph, point3).stream().filter(s -> s.getDirection() == Direction.W).collect(Collectors.toList());
+            ListF = Graphs.neighborListOf(graph, point3).stream().filter(s -> s.getDirection() == Direction.E).collect(Collectors.toList());
             point.setLocation(point1.getGeom().getX() ,(int) Math.floor((point1.getGeom().getY()+ point2.getGeom().getY())/2));
         }
             HyperNode fNode=ListF.remove(0);

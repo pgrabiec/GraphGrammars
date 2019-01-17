@@ -36,7 +36,8 @@ public class HyperGraphHelper {
                 .filter(
                         hyperNode -> hyperNode.getType() == HyperNodeType.HYPER_EDGE
                                 && hyperNode.getLabel() == HyperNodeLabel.F
-                                && hyperNode.getDirection() == direction)
+                                && hyperNode.getDirection() == direction
+                                && graph.edgesOf(hyperNode).size() == 1)
                 .findAny()
                 .orElseThrow(ProductionNotApplicableException::new);
     }
