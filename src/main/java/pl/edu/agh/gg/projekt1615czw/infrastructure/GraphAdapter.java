@@ -79,6 +79,9 @@ public class GraphAdapter extends DefaultGraph {
         log.debug("Adding hyper node {} {}", hyperNode.getGeom(), uuid);
         Node node = addNode(uuid.toString());
 
+        node.setAttribute("layout.frozen");
+        node.addAttribute("xy", hyperNode.getGeom().x, hyperNode.getGeom().y);
+
         // Style
         String label = String.format("geom=(%s, %s) R=%s,G=%s,B=%s",
                 hyperNode.getGeom().x,
